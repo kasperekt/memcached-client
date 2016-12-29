@@ -29,6 +29,7 @@ int main(int argc, char** argv) {
     char* ip_str = argv[1];
     char* port_str = argv[2];
     char* requested_file = argv[3];
+    char* result_file = argc > 4 ? argv[4] : argv[3];
 
     struct sockaddr_in sck_addr;
     int sck;
@@ -64,7 +65,7 @@ int main(int argc, char** argv) {
     case MC_ACCEPT: {
         printf("File exists with size of: %lu\n", fsize);
         
-        FILE* fp = fopen(requested_file, "wb");
+        FILE* fp = fopen(result_file, "wb");
         unsigned long bytes_read = 0;
         char buffer[CHUNK_SIZE];
         

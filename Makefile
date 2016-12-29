@@ -7,7 +7,7 @@ SRC=main.c
 OBJ=$(addprefix $(OBJDIR)/,$(SRC:.c=.o))
 EXE=mc_client
 
-all: prepare $(EXE)
+all: clean prepare $(EXE)
 
 run: prepare $(EXE)
 	./$(EXE) 127.0.0.1 1234 file1.jpg
@@ -25,5 +25,5 @@ prepare:
 	if [ ! -d $(OBJDIR) ]; then mkdir $(OBJDIR); fi
 
 clean:
-	rm -r $(OBJDIR)
-	rm $(EXE)
+	if [ -d $(OBJDIR) ]; then rm -r $(OBJDIR); fi
+	if [ -f $(EXE) ]; then rm $(EXE); fi
